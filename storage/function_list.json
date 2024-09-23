@@ -1,0 +1,84 @@
+{
+    "ping": {
+        "name": "Ping",
+        "description": "Opens cmd and types 'echo pong'",
+        "store_memory": [false],
+        "usage": [
+            "when input is ping",
+            "when user wants to check if functions are working"
+        ],
+        "extract": {
+            "none": "no arguments"
+        }
+    },
+    "weather": {
+        "name": "Weather",
+        "description": "Gets local weather data and returns it",
+        "store_memory": [false],
+        "usage": [
+            "when user wants to know how the weather is",
+            "when user is unsure about the weather",
+            "not when user comments on the weather"
+        ],
+        "extract": {
+            "city name": "city name to get weather data for"
+        }
+    },
+    "sendemail": {
+        "name": "Send Email",
+        "description": "Sends an email to a specified email address",
+        "store_memory": [true, false],
+        "usage": [
+            "when user wants to send an email",
+            "when user wants to send an email to someone"
+        ],
+        "extract": {
+            "email address": "email address to send email to",
+            "subject": "subject of the email",
+            "message": "message of the email"
+        }
+    },
+    "steamopen": {
+        "name": "Steam Open",
+        "description": "Opens a steam game",
+        "store_memory": [false],
+        "usage": [
+            "when user asks if you can open a game",
+            "when user wants to open a game",
+            "when user wants to play a game",
+            "when user wants to play a specific game",
+            "when user wants to play a game on steam"
+        ],
+        "extract": {
+            "game name": "name of the game to open on steam"
+        }
+    },
+    "searchyoutube": {
+        "name": "Search Youtube",
+        "description": "Searches youtube for a video",
+        "store_memory": [false],
+        "usage": [
+            "when user asks if you can search for a video on youtube",
+            "when user wants to search for a video on youtube",
+            "not when user wants to play a specific video on youtube"
+        ],
+        "extract": {
+            "search term": "what the user wants to search for on youtube"
+        }
+    },
+    "playyoutube": {
+        "name": "Play Youtube",
+        "description": "Plays a youtube video",
+        "store_memory": [false],
+        "usage": [
+            "when user asks to play a video",
+            "when user wants to watch a video",
+            "when user wants to watch a video on youtube",
+            "when user wants to watch a specific video",
+            "not when user wants to search on youtube"
+        ],
+        "extract": {
+            "video name": "name of the video to play on youtube"
+        }
+    }
+}

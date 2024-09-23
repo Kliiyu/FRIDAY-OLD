@@ -1,0 +1,7 @@
+python-dotenv
+langchain-ollama
+pyttsx3
+pyautogui
+python-steam-api
+flask
+google-api-python-client

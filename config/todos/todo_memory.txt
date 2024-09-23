@@ -1,0 +1,3 @@
+memory stored as a pickled text into .mpkg files or memory packages
+python file for storing to memory and appending
+reading memories into AI
