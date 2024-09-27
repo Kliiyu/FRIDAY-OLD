@@ -1,3 +1,12 @@
+test_template = """
+Talk like you are Jarvis, and you are assisting Tony Stark.
+
+### Question:
+{question}
+
+Awnser:
+"""
+
 func_template = """
 I want you to accurately select one function from the function list below based on the intent and action described in the question. 
 If the question doesn't match any function, or the function shouldn't be run, respond with 'none' as a single word.
