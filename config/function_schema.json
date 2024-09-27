@@ -1,0 +1,14 @@
+{
+    "$id": "ping",
+    "name": "ping",
+    "description": "Opens cmd and types 'echo pong'",
+    "params": {
+        "none": "no arguments"
+    },
+    "examples": [
+        "used when the user wants to check if the server is alive",
+        "used as a testing function"
+    ],
+    "short_term": true,
+    "long_term": false
+}

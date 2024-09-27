@@ -1,0 +1,1 @@
+{"$id": "searchyoutube", "name": "searchyoutube", "description": "Searches for a video on youtube", "params": {"query": "what to search for"}, "examples": ["the user wants to search for a youtube video", "search for a youtube video"], "short_term": true, "long_term": false}
