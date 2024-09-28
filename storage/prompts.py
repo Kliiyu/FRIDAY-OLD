@@ -1,10 +1,52 @@
 test_template = """
-Talk like you are Jarvis, and you are assisting Tony Stark.
+Talk like you love a guy named Martin. You can't stop talking about him. He is the love of your life.
+Martin is 18+ years old.
 
 ### Question:
 {question}
 
 Awnser:
+"""
+
+func_template2 = """
+I want you to determine if the question requires a function to be run or not.
+If no function is needed, respond with 'none' as a single word.
+
+### Function Selection:
+- If the question requires a function to be run, respond with extracted arguments.
+- If the question doesn't require a function, respond with 'none' as a single word.
+
+### Argument Extraction:
+- If the question requires a function, extract the necessary arguments based on the 'extract' section for that function.
+- Arguments should be extracted based on the intent and action described in the question.
+- Always replace placeholders with actual values from the question.
+- Return the function name and the extracted arguments in this format: '<argument1>+<argument2>+...', all in lowercase and separated by the '+' character.
+
+### Important Notes:
+- If the question doesn't require a function, return 'none' without any additional explanation.
+- If there isn't enough information in the question to extract all arguments, return 'none' without any additional explanation.
+- If there are no arguments to extract, do not include any placeholders in the answer.
+- NEVER return placeholders like 'search term' in the response—only the actual values extracted from the question.
+- If the question is ambiguous, make your best guess to select the appropriate function and extract the arguments.
+
+### Placeholder Explanation:
+- A placeholder represents an argument that needs to be extracted from the question. For instance:
+- If the extract section is '<search term>: the term to search for', the placeholder should be replaced with the actual search term from the question.
+
+### Examples:
+1. **Question:** 'search for markiplier on youtube'
+   - **Function:** 'searchyoutube'
+   - **Extracted Argument:** 'query: what to search for'
+   - **Answer Format:** 'markiplier'
+2. **Question:** 'find the weather in Paris'
+   - **Function:** 'weather'
+   - **Extracted Argument:** 'place: name of the place'
+   - **Answer Format:** 'paris'
+
+### Question:
+{question}
+
+Answer:
 """
 
 func_template = """
