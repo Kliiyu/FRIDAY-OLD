@@ -5,3 +5,5 @@ pyautogui
 python-steam-api
 flask
 google-api-python-client
+chromadb
+pyfiglet
