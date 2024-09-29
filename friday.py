@@ -32,41 +32,44 @@ def speak(engine, response):
 def run_func(chain, fn_vec, user_input, verbose: bool = True):
     func_result = fn_vec.query(user_input, 1)
     name = func_result["ids"][0][0]
+    desc = func_result["documents"][0][0]
 
-    console.print(func_result)
+    run = pre_func_chain.invoke({"question": user_input, "function": name, "description": desc}).lower().strip()
 
-    qfi = {
-        "question": user_input,
-        "function": name,
-        "instruct": func_result["documents"][0][0]
-    }
-    
-    output(f"Extracting arguments for function: {name}", OutputType.INFO, verbose=verbose)
-    arguments = chain.invoke(qfi)
-    arguments = arguments.split("+")
-    arguments[0] = arguments[0].replace(" ", "")
-    
-    output(f"Function to run: {name} with arguments: {arguments}", OutputType.INFO, verbose=verbose)
-    
-    venv_python = r'.venv\Scripts\python.exe'
-    if arguments == "none":
-        arguments = []
-    
-    try:
-        completed_process = subprocess.run(
-            [venv_python, f"functions/{name}/function.py", *arguments],
-            capture_output=True,
-            text=True
-        )
-        if completed_process.returncode == 0:
-            return completed_process.stdout.strip()
-        else:
-            return f"Script error with return code: {completed_process.returncode}"
-    except FileNotFoundError:
-        output("File does not exist!", OutputType.ERROR, verbose=verbose)
-    except Exception as e:
-        output(f"An unknown error occured: {e}", OutputType.ERROR, verbose=verbose)
-    return "no function was executed"
+    if run == "yes":
+        qfi = {
+            "question": user_input,
+            "function": name,
+            "instruct": desc
+        }
+        
+        output(f"Extracting arguments for function: {name}", OutputType.INFO, verbose=verbose)
+        arguments = chain.invoke(qfi)
+        arguments = arguments.split("+")
+        arguments[0] = arguments[0].replace(" ", "")
+        
+        output(f"Function to run: {name} with arguments: {arguments}", OutputType.INFO, verbose=verbose)
+        
+        venv_python = r'.venv\Scripts\python.exe'
+        if arguments == "none":
+            arguments = []
+        
+        try:
+            completed_process = subprocess.run(
+                [venv_python, f"functions/{name}/function.py", *arguments],
+                capture_output=True,
+                text=True
+            )
+            if completed_process.returncode == 0:
+                return completed_process.stdout.strip()
+            else:
+                return f"Script error with return code: {completed_process.returncode}"
+        except FileNotFoundError:
+            output("File does not exist!", OutputType.ERROR, verbose=verbose)
+        except Exception as e:
+            output(f"An unknown error occured: {e}", OutputType.ERROR, verbose=verbose)
+    else:
+        return "no function was executed"
     
 # Main
 def main(verbose):
@@ -125,6 +128,9 @@ if __name__ == "__main__":
         output("Using high performance model.", OutputType.INFO, verbose=verbose)
 
     # Prompts
+    pre_func_prompt = ChatPromptTemplate.from_template(prompts.pre_func_template)
+    pre_func_chain = pre_func_prompt | model
+    
     func_prompt = ChatPromptTemplate.from_template(prompts.func_template)
     func_chain = func_prompt | model
     

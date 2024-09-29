@@ -1,3 +1,15 @@
+pre_func_template = """
+I will give you a function name and description, and a question, I want you to determine if the function should be run based on the question.
+If the function should be run, respond with 'yes', otherwise respond with 'no' as a single word.
+Do not say anything else in the response, only 'yes' or 'no'.
+
+Function: {function}
+Function Description: {description}
+Qustion: {question}
+
+Awnser:
+"""
+
 func_template = """
 I want you to accurately select one function from the function list below based on the intent and action described in the question. 
 If the question doesn't match any function, or the function shouldn't be run, respond with 'none' as a single word.
