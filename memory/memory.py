@@ -70,13 +70,16 @@ class ltm(dbs):
         Returns:
             dict: Query results
         """
+        output("Fetching long term memory results...", output_type=OutputType.INFO, verbose=self.verbose)
         if self.collection:
             results = self.collection.query(
                 query_texts=[query],
                 n_results=n_results
             )
+            output("Long term memory results fetched.", output_type=OutputType.INFO, verbose=self.verbose)
             return results
         else:
+            output("No long term memory collection found.", output_type=OutputType.ERROR, verbose=self.verbose)
             return {}
         
 class functions(dbs):
