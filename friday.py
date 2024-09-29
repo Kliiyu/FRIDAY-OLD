@@ -28,12 +28,45 @@ def speak(engine, response):
     engine.runAndWait()
     output("Finished speaking.", OutputType.INFO, verbose=verbose)
     
-    
 # Run function
-def run_func(fn_vec, user_input, verbose: bool = True):
+def run_func(chain, fn_vec, user_input, verbose: bool = True):
     func_result = fn_vec.query(user_input, 1)
-    return func_result
+    name = func_result["ids"][0][0]
+
+    console.print(func_result)
+
+    qfi = {
+        "question": user_input,
+        "function": name,
+        "instruct": func_result["documents"][0][0]
+    }
     
+    output(f"Extracting arguments for function: {name}", OutputType.INFO, verbose=verbose)
+    arguments = chain.invoke(qfi)
+    arguments = arguments.split("+")
+    arguments[0] = arguments[0].replace(" ", "")
+    
+    output(f"Function to run: {name} with arguments: {arguments}", OutputType.INFO, verbose=verbose)
+    
+    venv_python = r'.venv\Scripts\python.exe'
+    if arguments == "none":
+        arguments = []
+    
+    try:
+        completed_process = subprocess.run(
+            [venv_python, f"functions/{name}/function.py", *arguments],
+            capture_output=True,
+            text=True
+        )
+        if completed_process.returncode == 0:
+            return completed_process.stdout.strip()
+        else:
+            return f"Script error with return code: {completed_process.returncode}"
+    except FileNotFoundError:
+        output("File does not exist!", OutputType.ERROR, verbose=verbose)
+    except Exception as e:
+        output(f"An unknown error occured: {e}", OutputType.ERROR, verbose=verbose)
+    return "no function was executed"
     
 # Main
 def main(verbose):
@@ -65,13 +98,16 @@ def main(verbose):
             console.print("[white]Type [red]'clear'[/] to clear the screen.")
             console.print("[white]Type [red]'verbose'[/] to toggle verbose mode.\n")
             continue
+        
         output("Processing...", OutputType.INFO, verbose=verbose)
-        run_func(fn_vec, user_input, verbose=verbose)
-        response = test_chain.invoke({"question": user_input})
+        function_output = run_func(func_chain, fn_vec, user_input, verbose=verbose)
+        
+        result = response_chain.invoke({"context": "none", "question": user_input, "func_output": function_output})
+        
         if tts: 
-            speak(engine, response)
+            speak(engine, result)
         else:
-            console.print(f"[green]FRIDAY > {response}[/]")
+            console.print(f"[green]FRIDAY > {result}[/]")
         
     output("Exiting...", OutputType.INFO, verbose=verbose)
     engine.stop()
@@ -89,7 +125,10 @@ if __name__ == "__main__":
         output("Using high performance model.", OutputType.INFO, verbose=verbose)
 
     # Prompts
-    test_prompt = ChatPromptTemplate.from_template(prompts.test_template)
-    test_chain = test_prompt | model
+    func_prompt = ChatPromptTemplate.from_template(prompts.func_template)
+    func_chain = func_prompt | model
+    
+    response_prompt = ChatPromptTemplate.from_template(prompts.template)
+    response_chain = response_prompt | model
 
     main(verbose)

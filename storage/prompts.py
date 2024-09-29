@@ -1,68 +1,11 @@
-test_template = """
-Talk like you love a guy named Martin. You can't stop talking about him. He is the love of your life.
-Martin is 18+ years old.
-
-### Question:
-{question}
-
-Awnser:
-"""
-
-func_template2 = """
-I want you to determine if the question requires a function to be run or not.
-If no function is needed, respond with 'none' as a single word.
-
-### Function Selection:
-- If the question requires a function to be run, respond with extracted arguments.
-- If the question doesn't require a function, respond with 'none' as a single word.
-
-### Argument Extraction:
-- If the question requires a function, extract the necessary arguments based on the 'extract' section for that function.
-- Arguments should be extracted based on the intent and action described in the question.
-- Always replace placeholders with actual values from the question.
-- Return the function name and the extracted arguments in this format: '<argument1>+<argument2>+...', all in lowercase and separated by the '+' character.
-
-### Important Notes:
-- If the question doesn't require a function, return 'none' without any additional explanation.
-- If there isn't enough information in the question to extract all arguments, return 'none' without any additional explanation.
-- If there are no arguments to extract, do not include any placeholders in the answer.
-- NEVER return placeholders like 'search term' in the response—only the actual values extracted from the question.
-- If the question is ambiguous, make your best guess to select the appropriate function and extract the arguments.
-
-### Placeholder Explanation:
-- A placeholder represents an argument that needs to be extracted from the question. For instance:
-- If the extract section is '<search term>: the term to search for', the placeholder should be replaced with the actual search term from the question.
-
-### Examples:
-1. **Question:** 'search for markiplier on youtube'
-   - **Function:** 'searchyoutube'
-   - **Extracted Argument:** 'query: what to search for'
-   - **Answer Format:** 'markiplier'
-2. **Question:** 'find the weather in Paris'
-   - **Function:** 'weather'
-   - **Extracted Argument:** 'place: name of the place'
-   - **Answer Format:** 'paris'
-
-### Question:
-{question}
-
-Answer:
-"""
-
 func_template = """
 I want you to accurately select one function from the function list below based on the intent and action described in the question. 
 If the question doesn't match any function, or the function shouldn't be run, respond with 'none' as a single word.
 
-### Function Selection:
-- You MUST select the function name exactly as it appears in the function list.
-- NEVER split the function name into separate parts or words (e.g., do not split 'searchyoutube' into 'search' and 'youtube').
-- If no valid function applies, return 'none' without any additional explanation.
-- NEVER select a function name that is not in the provided function list.
-
 ### Argument Extraction:
 - After selecting the function, extract the necessary arguments based on the 'extract' section for that function. 
 - Always replace placeholders with actual values from the question.
-- Return the function name and the extracted arguments in this format: '<function name>+<argument1>+<argument2>+...', all in lowercase and separated by the '+' character. 
+- Return the function name and the extracted arguments in this format: '<argument1>+<argument2>+...', all in lowercase and separated by the '+' character. 
 
 ### Important Notes:
 - If the function doesn't require any arguments, return only the function name, without any '+' characters or extra details.
@@ -79,27 +22,26 @@ A placeholder represents an argument that needs to be extracted from the questio
 1. **Question:** 'search for markiplier on youtube'
    - **Function:** 'searchyoutube'
    - **Extracted Argument:** 'markiplier'
-   - **Answer Format:** 'searchyoutube+markiplier'
+   - **Answer Format:** 'markiplier'
 
 2. **Question:** 'find the weather in Paris'
    - **Function:** 'weather'
    - **Extracted Argument:** 'paris'
-   - **Answer Format:** 'weather+paris'
+   - **Answer Format:** 'paris'
 
-3. **Question:** 'just show me the latest news'
-   - **Function:** 'getnews'
+3. **Question:** 'ping'
+   - **Function:** 'ping'
    - **No arguments required**
-   - **Answer Format:** 'getnews'
-
-### Function List:
-{list}
+   - **Answer Format:** 'none'
 
 ### Question:
-{question}
+Original question: {question}
+Function name: {function}
+What does the function do and what arguments to extract: {instruct}
 
 ### Answer:
-Always respond with ONLY the function name and extracted arguments, separated by '+', as shown in the examples above.
-If no arguments are required, return just the function name.
+Always respond with ONLY the extracted arguments, separated by '+', as shown in the examples above.
+If no arguments are required, return none.
 """
 
 template = """
