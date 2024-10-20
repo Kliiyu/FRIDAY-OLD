@@ -7,3 +7,4 @@ flask
 google-api-python-client
 chromadb
 pyfiglet
+PyChromecast

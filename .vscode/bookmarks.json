@@ -1,0 +1,39 @@
+{
+	"files": [
+		{
+			"path": "friday.py",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "Imports"
+				},
+				{
+					"line": 15,
+					"column": 0,
+					"label": "Tts"
+				},
+				{
+					"line": 32,
+					"column": 0,
+					"label": "Functions"
+				},
+				{
+					"line": 75,
+					"column": 0,
+					"label": "Memories"
+				},
+				{
+					"line": 115,
+					"column": 0,
+					"label": "Main"
+				},
+				{
+					"line": 164,
+					"column": 0,
+					"label": "Start"
+				}
+			]
+		}
+	]
+}
