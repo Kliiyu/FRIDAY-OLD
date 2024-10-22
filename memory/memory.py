@@ -5,7 +5,7 @@ from typing import Union
 from rich.progress import track
 from output import output, OutputType, track_desc_gen
 
-PATH = r"D:\FRIDAY\memory\chroma_data"
+PATH = r"./chroma_data"
 HOST = "localhost"
 PORT = 8000
 
@@ -20,6 +20,7 @@ class dbs():
         self.verbose = verbose
         try:
             self.client = chromadb.PersistentClient(path=PATH, host=HOST, port=PORT)
+            output(f"Running memory on ${HOST}:${PORT}", OutputType.INFO, verbose=verbose)
         except TypeError:
             self.client = chromadb.PersistentClient(path=PATH)
         except chromadb.exceptions.ConnectionError:

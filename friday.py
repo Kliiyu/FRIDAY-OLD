@@ -121,7 +121,7 @@ def main(verbose):
             time.sleep(0.05)
             
     fn_vec = functions(verbose=verbose)
-    fn_vec.update(r"D:\FRIDAY\functions")
+    fn_vec.update(r"./functions")
         
     engine = init_tts()
     
