@@ -69,7 +69,7 @@ def run_func(chain, fn_vec, user_input, verbose: bool = True):
         except FileNotFoundError:
             output("File does not exist!", OutputType.ERROR, verbose=verbose)
         except Exception as e:
-            output(f"An unknown error occured: {e}", OutputType.ERROR, verbose=verbose)
+            output(f"An unknown error occurred: {e}", OutputType.ERROR, verbose=verbose)
     else:
         return "no function was executed"
     
@@ -77,7 +77,7 @@ def run_func(chain, fn_vec, user_input, verbose: bool = True):
 def get_ltm(user_input):
     long_term = ltm(verbose=verbose)
     
-    long_term.insert(["my day has been great", "i like bananas a lot", "apples arent that good", "i am made by Adrian", "steam is a video game platform"], ["id1", "id2", "id3", "id4", "id5"])
+    long_term.insert(["my day has been great", "i like bananas a lot", "apples are not that good", "i am made by Adrian", "steam is a video game platform"], ["id1", "id2", "id3", "id4", "id5"])
     
     fetched = long_term.query(user_input, 5)
     formatted = ""
@@ -121,11 +121,11 @@ def main(verbose):
             time.sleep(0.05)
             
     fn_vec = functions(verbose=verbose)
-    fn_vec.update(r"D:\FRIDAY\functions")
+    fn_vec.update(r"./functions")
         
     engine = init_tts()
     
-    console.print("\n[white]Welcome sir how may I assit you? Type [red]'exit'[/] when you want to quit.[/]")
+    console.print("\n[white]Welcome sir how may I assist you? Type [red]'exit'[/] when you want to quit.[/]")
     console.print("[white]Type [red]'help'[/] for more commands.[/]")
     
     while True:
@@ -140,7 +140,7 @@ def main(verbose):
             console.print(f"[white]Verbose mode set to [red]{verbose}[/].[/]\n")
             continue
         elif user_input == "help":
-            console.print("\n[white]How may I assit you? Type [red]'exit'[/] when you want to quit.[/]")
+            console.print("\n[white]How may I assist you? Type [red]'exit'[/] when you want to quit.[/]")
             console.print("[white]Type [red]'clear'[/] to clear the screen.")
             console.print("[white]Type [red]'verbose'[/] to toggle verbose mode.\n")
             continue
