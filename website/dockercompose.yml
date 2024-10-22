@@ -1,8 +1,0 @@
-services:
-  website:
-    image: nginx:latest
-    restart: always
-    ports:
-      - "5432:80"
-    volumes:
-      - ./html:/usr/share/nginx/html
