@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
@@ -23,7 +25,12 @@ jobs:
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - name: Convert into Markdown Docs
         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^functions/.*\.py$')
+          # Attempt to get the list of changed files
+          changed_files=$(git diff --name-only ${{ github.event.before || 'HEAD^' }} ${{ github.sha }} | grep '^functions/.*\.py$' || true)
+          if [ -z "$changed_files" ]; then
+            echo "No changed files to process."
+            exit 0
+          fi
           for file in $changed_files; do
               parent_folder=$(dirname $file)
               echo "Running Python code in $parent_folder"
@@ -31,6 +38,10 @@ jobs:
           done
       - name: Commit and push changes
         run: |
-          git add .
-          git commit -m "Convert Python to Markdown Docs (${{ env.cache_id }})"
-          git push
+          if git diff --cached --exit-code; then
+            echo "No changes to commit."
+          else
+            git add .
+            git commit -m "Convert Python to Markdown Docs (${{ env.cache_id }})"
+            git push
+          fi
