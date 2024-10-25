@@ -1,5 +1,4 @@
 {
-    "$id": "ping",
     "name": "ping",
     "description": "Opens cmd and types 'echo pong'",
     "params": {

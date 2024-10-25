@@ -1,7 +1,0 @@
-argument parsing (ig its pretty much done)
-running multiple functions with one input
-speech to text
-long term memory
-fine-tune input templates (fine tuned a bit but could always use improvement)
-follow up yes or no questions
-memory and functions context into AI using chroma RAG

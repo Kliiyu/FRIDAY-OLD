@@ -3,7 +3,7 @@ import json
 import os
 from typing import Union
 from rich.progress import track
-from output import output, OutputType, track_desc_gen
+from tools.output import output, OutputType, track_desc_gen
 
 PATH = r"./chroma_data"
 HOST = "localhost"
@@ -123,7 +123,7 @@ class functions(dbs):
             chunk, id = prepare_data(data)
             documents.append(chunk)
             ids.append(id)
-            data["$id"] = id
+            data["name"] = id
             
             with open(f"{path}/{folder}/metadata.json", "w") as f:
                 json.dump(data, f)

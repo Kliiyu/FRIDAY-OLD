@@ -1,1 +1,16 @@
-{"$id": "date", "name": "date", "description": "Returns the current date and time", "params": {"none": "no arguments"}, "examples": ["when is it?", "what time is it?", "what's the date?", "what day is it?", "what month is it?"], "short_term": true, "long_term": false}
+{
+    "name": "date",
+    "description": "Returns the current date and time",
+    "params": {
+        "none": "no arguments"
+    },
+    "examples": [
+        "when is it?",
+        "what time is it?",
+        "what's the date?",
+        "what day is it?",
+        "what month is it?"
+    ],
+    "short_term": true,
+    "long_term": false
+}

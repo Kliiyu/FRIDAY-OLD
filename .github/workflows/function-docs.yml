@@ -1,0 +1,60 @@
+name: Convert Python to Markdown Docs
+on:
+  push:
+    branches:
+      - dev
+      - develop
+    paths:
+      - 'functions/**'
+permissions:
+  contents: write
+jobs:
+  python-to-mkdocs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch the entire history for all branches
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Find Folders without Corresponding Markdown
+        id: find_missing_docs
+        run: |
+          # Find all directories under `functions` that contain `function.py`
+          folders=$(find functions -type f -name "function.py" -exec dirname {} \;)
+
+          # Loop through each folder and check for a corresponding Markdown file
+          folders_to_process=()
+          for folder in $folders; do
+              base_name=$(basename "$folder")
+              if [ ! -f "docs/Functions/$base_name.md" ]; then
+                  folders_to_process+=("$folder")
+              fi
+          done
+
+          # Export folders to process as a single string, separated by whitespace
+          echo "folders_to_process=${folders_to_process[@]}" >> $GITHUB_ENV
+
+      - name: Convert to Markdown Docs
+        if: env.folders_to_process
+        run: |
+          # Process each folder without a corresponding Markdown file
+          for folder in $folders_to_process; do
+              echo "Running Python code in $folder"
+              python ./tools/function_to_docs.py $folder
+          done
+
+      - name: Commit and push changes
+        if: env.folders_to_process
+        run: |
+          git add .
+          git commit -m "Convert Python to Markdown Docs for folders: $folders_to_process"
+          git push
