@@ -1,1 +1,15 @@
-{"$id": "sendemail", "name": "sendemail", "description": "Sends an email", "params": {"to": "email address to send to", "subject": "subject of the email", "body": "body of the email"}, "examples": ["the user wants to send an email", "send an email"], "short_term": true, "long_term": false}
+{
+    "name": "sendemail",
+    "description": "Sends an email",
+    "params": {
+        "to": "email address to send to",
+        "subject": "subject of the email",
+        "body": "body of the email"
+    },
+    "examples": [
+        "the user wants to send an email",
+        "send an email"
+    ],
+    "short_term": true,
+    "long_term": false
+}

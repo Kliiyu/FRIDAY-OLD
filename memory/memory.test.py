@@ -1,5 +1,5 @@
 from memory.memory import functions
-from output import output, title, OutputType, console
+from tools.output import output, title, OutputType, console
 from rich.progress import track
 import time
 

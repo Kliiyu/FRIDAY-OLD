@@ -1,2 +1,36 @@
-.venv
+# Virtual environment
+.venv/
+venv/
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Environment variables
+.env
 /config/.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Logs
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.vs/
+.idea/
+*.sublime-project
+*.sublime-workspace

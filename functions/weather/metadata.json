@@ -1,1 +1,13 @@
-{"$id": "weather", "name": "weather", "description": "Checks the weather", "params": {"location": "location to check the weather for"}, "examples": ["the user wants to check the weather", "check the weather"], "short_term": true, "long_term": false}
+{
+    "name": "weather",
+    "description": "Checks the weather",
+    "params": {
+        "location": "location to check the weather for"
+    },
+    "examples": [
+        "the user wants to check the weather",
+        "check the weather"
+    ],
+    "short_term": true,
+    "long_term": false
+}

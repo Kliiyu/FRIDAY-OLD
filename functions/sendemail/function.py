@@ -7,8 +7,8 @@ import sys
 from dotenv import load_dotenv
 load_dotenv(dotenv_path="config\.env")
 
-sender = "adri2007900@gmail.com"
-password = os.getenv("GOOGLE_PASSWORD")
+sender = os.getenv("SENDER_EMAIL")
+password = os.getenv("GOOGLE_APP_PASSWORD")
 
 def main(subject, body, sender, recipients, password):
     msg = MIMEText(body)
