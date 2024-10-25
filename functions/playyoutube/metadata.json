@@ -1,13 +1,1 @@
-{
-    "name": "playyoutube",
-    "description": "Plays a youtube video",
-    "params": {
-        "query": "youtube video to play"
-    },
-    "examples": [
-        "the user wants to play a youtube video",
-        "open a youtube video"
-    ],
-    "short_term": true,
-    "long_term": false
-}
+{"name": "playyoutube", "description": "Plays a youtube video", "params": {"query": "youtube video to play"}, "examples": ["the user wants to play a youtube video", "open a youtube video"], "short_term": true, "long_term": false}

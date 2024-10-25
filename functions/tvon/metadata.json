@@ -1,14 +1,1 @@
-{
-    "name": "tvon",
-    "description": "Turn the TV on",
-    "params": {
-        "none": "no arguments"
-    },
-    "examples": [
-        "used when the user wants to turn the TV on",
-        "used when the user wants to watch TV",
-        "used when the user wants to turn the TV on to watch something"
-    ],
-    "short_term": false,
-    "long_term": false
-}
+{"name": "tvon", "description": "Turn the TV on", "params": {"none": "no arguments"}, "examples": ["used when the user wants to turn the TV on", "used when the user wants to watch TV", "used when the user wants to turn the TV on to watch something"], "short_term": false, "long_term": false}

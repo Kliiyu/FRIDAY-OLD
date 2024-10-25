@@ -1,13 +1,1 @@
-{
-    "name": "steamopen",
-    "description": "Opens steam",
-    "params": {
-        "game": "name of the game to open"
-    },
-    "examples": [
-        "the user wants to open a game on steam",
-        "open a game on steam"
-    ],
-    "short_term": true,
-    "long_term": false
-}
+{"name": "steamopen", "description": "Opens steam", "params": {"game": "name of the game to open"}, "examples": ["the user wants to open a game on steam", "open a game on steam"], "short_term": true, "long_term": false}
