@@ -1,4 +1,4 @@
-name: docs-ci 
+name: CI/CD for MkDocs
 on:
   push:
     branches:
