@@ -23,7 +23,7 @@ jobs:
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - name: Convert into Markdown Docs
         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^functions/.*\.py$')
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^functions/.*\.py$')
           for file in $changed_files; do
               parent_folder=$(dirname $file)
               echo "Running Python code in $parent_folder"
