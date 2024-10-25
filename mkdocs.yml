@@ -66,5 +66,12 @@ nav:
     - License: Additional/license.md
     - Code Of Conduct: Additional/code_of_conduct.md
   - Functions:
+    - Functions/steamopen.md
+    - Functions/weather.md
+    - Functions/searchyoutube.md
+    - Functions/tvon.md
+    - Functions/playyoutube.md
+    - Functions/ping.md
+    - Functions/sendemail.md
     - Functions/date.md
     
