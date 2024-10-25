@@ -1,0 +1,9 @@
+site_name: FRIDAY
+theme:
+  name: material
+  palette:
+    primary: 'red'
+    accent: 'red'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
