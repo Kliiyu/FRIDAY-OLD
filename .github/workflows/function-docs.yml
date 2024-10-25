@@ -31,7 +31,7 @@ jobs:
           folders=$(find functions -type f -name "function.py" -exec dirname {} \;)
 
           # Export folders to process as a single string, separated by whitespace
-          echo "folders_to_process=${folders[@]}" >> $GITHUB_ENV
+          echo "folders_to_process=$(echo ${folders[@]})" >> $GITHUB_ENV
 
       - name: Convert to Markdown Docs
         if: env.folders_to_process
