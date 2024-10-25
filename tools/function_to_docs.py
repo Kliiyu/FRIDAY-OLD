@@ -9,6 +9,8 @@ def create_markdown_from_folder(folder_path):
     folder_name = os.path.basename(folder_path)
     markdown_dir = "./docs/Functions"
     markdown_file = f"{markdown_dir}/{folder_name}.md"
+    yml_file = "mkdocs.yml"
+    yml_entry = f"    - Functions/{folder_name}.md\n"
 
     # Ensure the directory exists
     if not os.path.exists(markdown_dir):
@@ -24,8 +26,27 @@ def create_markdown_from_folder(folder_path):
                     md_file.write(f"- {file_path}\n")
     except IOError as e:
         print(f"An error occurred while writing to the file: {e}")
+        return
 
     print(f"Markdown file '{markdown_file}' created successfully.")
+
+    # Check if entry is already in mkdocs.yml
+    try:
+        with open(yml_file, 'r') as yml:
+            if yml_entry in yml.readlines():
+                print(f"Entry 'Functions/{folder_name}.md' already exists in '{yml_file}'.")
+                return
+    except IOError as e:
+        print(f"An error occurred while reading '{yml_file}': {e}")
+        return
+
+    # Append the entry to mkdocs.yml if it does not already exist
+    try:
+        with open(yml_file, 'a') as yml:
+            yml.write(yml_entry)
+        print(f"Added 'Functions/{folder_name}.md' to '{yml_file}' under Functions section.")
+    except IOError as e:
+        print(f"An error occurred while updating '{yml_file}': {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
