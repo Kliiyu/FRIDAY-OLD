@@ -65,6 +65,10 @@ nav:
     - Changelog: Additional/changelog.md
     - License: Additional/license.md
     - Code Of Conduct: Additional/code_of_conduct.md
+    - 🚧 Work In Progress 🚧: 
+        - Setup Home Server: Additional/WIP/server.md
+        - IoT Integration: Additional/WIP/iot.md
+        - Website Functionality: Additional/WIP/website.md
   - Functions:
     - Functions/steamopen.md
     - Functions/weather.md
