@@ -33,17 +33,38 @@ def create_markdown_from_folder(folder_path):
     # Check if entry is already in mkdocs.yml
     try:
         with open(yml_file, 'r') as yml:
-            if yml_entry in yml.readlines():
+            lines = yml.readlines()
+            if yml_entry.strip() in (line.strip() for line in lines):
                 print(f"Entry 'Functions/{folder_name}.md' already exists in '{yml_file}'.")
                 return
     except IOError as e:
         print(f"An error occurred while reading '{yml_file}': {e}")
         return
 
-    # Append the entry to mkdocs.yml if it does not already exist
+    # Find the "Functions:" section and append entry correctly
     try:
-        with open(yml_file, 'a') as yml:
-            yml.write(yml_entry)
+        with open(yml_file, 'r+') as file:
+            lines = file.readlines()
+            index = None
+
+            # Locate the Functions section
+            for i, line in enumerate(lines):
+                if line.strip() == "- Functions:":
+                    index = i
+                    break
+
+            # Insert the new entry in the Functions section or create the section
+            if index is not None:
+                lines.insert(index + 1, yml_entry)
+            else:
+                lines.append("\n- Functions:\n")
+                lines.append(yml_entry)
+
+            # Rewrite the file with updated content
+            file.seek(0)
+            file.writelines(lines)
+            file.truncate()
+            
         print(f"Added 'Functions/{folder_name}.md' to '{yml_file}' under Functions section.")
     except IOError as e:
         print(f"An error occurred while updating '{yml_file}': {e}")

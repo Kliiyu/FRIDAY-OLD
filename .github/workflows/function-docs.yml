@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - develop
+      - dev
     paths:
       - 'functions/**'
 permissions:

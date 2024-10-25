@@ -67,9 +67,4 @@ nav:
     - Code Of Conduct: Additional/code_of_conduct.md
   - Functions:
     - Functions/date.md
-    - Functions/ping.md
-    - Functions/playyoutube.md
-    - Functions/searchyoutube.md
-    - Functions/sendemail.md
-    - Functions/steamopen.md
-    - Functions/tvon.md
+    
