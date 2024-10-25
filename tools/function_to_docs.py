@@ -7,7 +7,7 @@ def create_markdown_from_folder(folder_path):
         return
 
     folder_name = os.path.basename(folder_path)
-    markdown_file = f"{folder_name}.md"
+    markdown_file = f"./docs/Functions/{folder_name}.md"
 
     with open(markdown_file, 'w') as md_file:
         md_file.write(f"# {folder_name}\n\n")
