@@ -56,5 +56,5 @@ jobs:
         if: env.folders_to_process
         run: |
           git add .
-          git commit -m "Convert Python to Markdown Docs for folders: ${ env.folders_to_process }"
+          git commit -m "Convert Python to Markdown Docs for folders: $folders_to_process"
           git push
