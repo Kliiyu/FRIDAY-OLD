@@ -65,13 +65,16 @@ nav:
     - Changelog: Additional/changelog.md
     - License: Additional/license.md
     - Code Of Conduct: Additional/code_of_conduct.md
+    - 🚧 Work In Progress 🚧: 
+        - Setup Home Server: Additional/WIP/server.md
+        - IoT Integration: Additional/WIP/iot.md
+        - Website Functionality: Additional/WIP/website.md
   - Functions:
-    - Functions/date.md
-    - Functions/ping.md
-    - Functions/playyoutube.md
-    - Functions/searchyoutube.md
-    - Functions/sendemail.md
     - Functions/steamopen.md
-    - Functions/tvon.md    - Functions/test.md
-    - Functions/tvon.md
     - Functions/weather.md
+    - Functions/searchyoutube.md
+    - Functions/tvon.md
+    - Functions/playyoutube.md
+    - Functions/ping.md
+    - Functions/sendemail.md
+    - Functions/date.md
